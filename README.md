@@ -135,4 +135,20 @@ The database name should be appdb.
 Keep your connection string secure in production environments.
 
 
+---
+
+Screenshot
+
+
+Login
+
+![Screenshot 2025-02-26 103208](https://github.com/user-attachments/assets/9a4b49e6-a13e-4e1d-94dc-cd0ca2960ced)
+
+
+Register
+
+
+
+![Screenshot 2025-02-26 103256](https://github.com/user-attachments/assets/43be6461-4770-4557-9f35-20f17ff4a28c)
+
 
