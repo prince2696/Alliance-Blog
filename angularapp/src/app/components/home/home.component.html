@@ -1,0 +1,37 @@
+<div class="background-container" *ngIf="authService.isLoggedIn()">
+    <div class="overlay"></div>
+   <h1 id="w">BlogPortal </h1>
+    <div class="marquee">
+        <span id="marquee-text"></span>
+    </div>
+    <div  class="slider-container" (mouseenter)="stopSliding()" (mouseleave)="startSliding()">
+        <div class="card-wrapper">
+            <div class="card" *ngFor="let card of cardsFiltered; let i = index" (click)="stopSliding()">
+                <h2>{{ card.Title }}</h2>
+                <p  *ngIf="role==='User'"><a routerLink="/app-view-userblog/{{card.BlogPostId}}">read more...</a></p>
+                <div class="info-container">
+                    <div class="info-box">{{ card.PublishedDate | date }}</div>
+                    <div class="info-box">Author: {{ card.User?.Username }}</div>
+                </div>                
+            </div>
+            <!-- Duplicate the cards for seamless looping -->
+            <div class="card" *ngFor="let card of cardsFiltered; let i = index" (click)="stopSliding()">
+                <h2>{{ card.Title }}</h2>
+                <div><a  *ngIf="role==='User'" routerLink="/app-view-userblog/{{card.BlogPostId}}">read more...</a></div>
+                <div class="info-container">
+                    <div class="info-box">{{ card.PublishedDate | date }}</div>
+                    <div class="info-box">Author: {{ card.User?.Username }}</div>
+                </div>                
+            </div>
+        </div>
+        <div class="pagination">
+            <span *ngFor="let card of cards; let i = index" [class.active]="i === currentCard" (click)="goToCard(i)"></span>
+        </div>
+    </div>
+</div>
+<div class="background-container" *ngIf="!authService.isLoggedIn()">
+    <div class="overlay"></div>
+    <h1 >Good to See you here <br>Lets get you logged in <br>
+         <a routerLink="/login">Lets go!!!</a></h1><br>
+</div>
+

@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="card mt-3 mx-2">
+        <div class="card-header text-center">
+            <h1>{{checkTitle}}</h1>
+        </div>
+        <div class="card-body">
+            <form #announcementForm="ngForm">
+                <div class="form-group">
+                    <label for="title">Title <span style="color: red;">*</span></label>
+                    <input type="text" id="title" name="title" #announcementTitle="ngModel"
+                        [(ngModel)]="announcement.Title" class="form-control" required (ngModelChange)="updateErrorMessage()" />
+                    <div *ngIf="announcementTitle.touched && announcementTitle.invalid" class="text-danger">
+                        Title is required
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content <span style="color: red;">*</span></label>
+                    <textarea id="content" name="content" #announcementContent="ngModel"
+                        [(ngModel)]="announcement.Content" class="form-control" required (ngModelChange)="updateErrorMessage()"></textarea>
+                    <div *ngIf="announcementContent.touched && announcementContent.invalid" class="text-danger">
+                        Content is required
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category <span style="color: red;">*</span></label>
+                    <input type="text" id="category" name="category" #announcementCategory="ngModel"
+                        [(ngModel)]="announcement.Category" class="form-control" required (ngModelChange)="updateErrorMessage()" />
+                    <div *ngIf="announcementCategory.touched && announcementCategory.invalid" class="text-danger">
+                        Category is required
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority <span style="color: red;">*</span></label>
+                    <select name="priority" id="priority" #announcementPriority="ngModel"
+                        [(ngModel)]="announcement.Priority" class="form-control" required (ngModelChange)="updateErrorMessage()">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                    <div *ngIf="announcementPriority.touched && announcementPriority.invalid" class="text-danger">
+                        Priority is required
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status <span style="color: red;">*</span></label>
+                    <select name="status" id="status" #announcementStatus="ngModel" [(ngModel)]="announcement.Status"
+                        class="form-control" required (ngModelChange)="updateErrorMessage()">
+                        <option value="Active">Active</option>
+                        <option value="InActive">InActive</option>
+                    </select>
+                    <div *ngIf="announcementStatus.touched && announcementStatus.invalid" class="text-danger">
+                        Status is required
+                    </div>
+                </div>
+
+                <div class="text-danger" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <button *ngIf="isRegister" [disabled]="announcementForm.invalid" type="submit" class="btn btn-success form-control"
+                    (click)="confirmSubmit()">Submit</button>
+
+                <button *ngIf="!isRegister" [disabled]="announcementForm.invalid" type="submit" class="btn btn-success form-control"
+                    (click)="confirmSubmit()">Save</button>
+
+                <button type="submit" class="btn form-control" (click)="close()"> Cancel </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeConfirmationModal()">&times;</span>
+      <h2>Confirmation</h2>
+      <p *ngIf="isRegister" >Are you sure you want to add this announcement?</p>
+      <p *ngIf="!isRegister" >Are you sure you want to edit this announcement?</p>
+      <button *ngIf="isRegister" [disabled]="announcementForm.invalid" type="submit" class="btn btn-success form-control"
+                    (click)="onAddSubmit(announcementForm)">Yes</button>
+      <button *ngIf="!isRegister" [disabled]="announcementForm.invalid" type="submit" class="btn btn-success form-control"
+                    (click)="onEditSubmit(announcementForm)">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="closeConfirmationModal()">No</button>
+    </div>
+</div>

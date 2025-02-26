@@ -1,0 +1,160 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove default margin */
+    height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-image: url('https://images.unsplash.com/photo-1695229067960-e75f07ad3c9b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(231, 231, 231, 0.9); /* Darker overlay with increased opacity */
+}
+
+h1 {
+    z-index: 999;
+    color: black; /* Change color to black */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3em; /* Adjust as needed */
+    margin: 0; /* Remove default margin */
+    position: absolute;
+    top: 10%; /* Adjust as needed to position above the marquee */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 40px;
+    position: absolute;
+    top: 20%; /* Adjust as needed to position below the h1 */
+    width: 100%;
+}
+#marquee-text {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%; /* Start the text off-screen */
+    animation: marquee 120s linear infinite; /* Adjust the duration as needed */
+}
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 120s linear infinite; /* Adjust duration for speed */
+}
+
+#marquee-text{
+  margin-left: 10%;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+h1, h2 {
+    color: #333;
+}
+
+p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.slider-container {
+    /* position: relative; */
+    /* width: 80%; */
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 20px;
+      /* Your slider-container styles */
+      position: absolute;
+      top: 30%; /* Adjust as needed to position below the marquee */
+      width: 100%;
+}
+
+.card-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+    width: calc(200%); /* Adjust width to accommodate duplicated cards */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.2); /* Make the background more transparent */
+    border: 1px solid #ccc; /* Add a thin border */
+    flex: 0 0 15%; /* Reduce the width of each card */
+    height: 250px; /* Reduce the height of each card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px; /* Reduce padding */
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    margin: 10px 9px; /* Reduce gap between cards */
+}
+
+.card p {
+    margin-bottom: 10px; /* Adjust margin */
+}
+
+.card .info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Space between the date and author */
+    margin-top: 10px;
+}
+
+.info-box {
+    background-color: #62685e1d; /* Light grey background */
+    border-radius: 20px; /* Cylindrical shape */
+    padding: 5px 10px; /* Padding inside the box */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-wrapper .card a {
+    color: grey;
+    text-decoration: none;
+}
+    
+.pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+}
+
+.pagination span {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.pagination span.active {
+    background-color: #333;
+}

@@ -1,0 +1,183 @@
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  background-color: #e1e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 850px; /* Increased width */
+  padding: 20px;
+  max-height: 70vh; /* Reduced height */
+  overflow-y: auto; /* Added scroll if content overflows */
+  margin-top: 20px; /* Added margin to create space from navbar */
+}
+
+.card-header {
+  background-color: #b0b0b0;
+  border-radius: 8px 8px 0 0;
+  padding: 10px;
+  color: #0a0a0a;
+}
+.card-title{
+  text-align: center;
+}
+.card-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #888;
+  outline: none;
+}
+
+.btn {
+  background-color: #888;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-success {
+  background-color: #5cb85c;
+}
+
+.btn:hover {
+  background-color: #666;
+}
+
+.text-danger {
+  color: #d9534f;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* Show the modal when this class is added */
+.modal.show {
+  display: flex; /* Show as flex container */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Smaller width */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+.modal-header .modal-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-header .close {
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.modal-header .close:hover,
+.modal-header .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Modal Footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.modal-footer .btn {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-footer .btn:hover {
+  opacity: 0.9;
+}
+
+.modal-footer .btn:first-child {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.modal-footer .btn:first-child:hover {
+  background-color: #218838;
+}
+
+.modal-footer .btn:last-child {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.modal-footer .btn:last-child:hover {
+  background-color: #c9302c;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}

@@ -1,0 +1,30 @@
+<nav>
+        <div class="navbar">
+          <img id="image" src="https://media-hosting.imagekit.io//458570414ea44eac/Logo_dAR.png?Expires=1833885285&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=T8-LGx8a0VGFYHOPRnLhvbaZJndvnWG-hgZXndMMf5aL7Yue0FSmMrSu5ztwHVAU-3ElP8CqenQOKxue0JKsbDM-CIXbtGAJr3O0oGVjhOtDVzT-ga3EajOUD8fIhCelr-nUL-FTWMnptOxVDn2kssJhcfbMpjYVAVPROn9GNHeeOxpEEZBiyDTQu7jWP7S7iKYaMZxW3lH0QCnkzlppu6sJJAZHKiydlTYCULl8Jfw9w0G1fEQZVy0VTvrC-A7Fa4U6xbRMa7IhpauswVpf8cb5YyRpSlndpjCpqoaPgRmHkrxTZDtpUKj5uySs5RzCs6MjBae6RL82HqAdm5nGHw__">
+            <div class="navbar-brand">BlogPortal</div>
+            <div class="navbar-user">{{userName}}/{{userRole}}</div>
+            <div class="navbar-item"><a routerLink="/home">Home</a></div>
+            <div class="navbar-item">
+                 <span class="dropdown-text"><button>Announcemets</button></span>
+                 <div class="dropdown-content">
+                 <a routerLink="/admin/add/announcement">Add Announcemts</a>
+                 <a routerLink="/admin/view/announcement">View Announcements</a>
+                 </div>
+            </div>
+            <div class="navbar-item"><a routerLink="/admin/view/blog">Blogs</a></div>
+            <div class="navbar-item"><a routerLink="/admin/view/feedback">Feedbacks</a></div>
+            <div class="navbar-item">
+                <button (click)="confirmSubmit()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="confirmationModalLogout" class="modal">
+        <div class="modal-content">
+          <span class="close" (click)="closeConfirmationModal()">&times;</span>
+          <h2>Confirmation</h2>
+          <p>Are you sure you want to Log Out</p>
+          <button (click)="logout()">Logout</button>
+          <button type="button" class="btn btn-secondary" (click)="closeConfirmationModal()">No</button>
+        </div>
+      </div>

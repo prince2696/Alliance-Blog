@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Blog</title>
+</head>
+<body>
+    <header>
+        <h1>Blog</h1>
+    </header>
+    <div class="container">
+        <div class="blog-post">
+            <h2>{{ blogPost.Title }}</h2>
+            <div class="author">By {{ blogPost.User.Username }}</div>
+            <div class="date">Posted on {{ blogPost.PublishedDate | date:'longDate' }}</div>
+            <p>{{ blogPost.Content }}</p>
+            <p><a routerLink="/home">go back to home</a></p>
+        </div>
+    </div>
+</body>
+</html>

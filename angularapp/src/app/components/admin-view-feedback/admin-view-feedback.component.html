@@ -1,0 +1,57 @@
+<h1 style="text-align: center; margin-top: 10px;font-family: 'Gilroy-Bold',sans-serif;">Feedback Details</h1>
+<div class="container mt-5" id="backGround" [ngClass]="{'blur-background': isProfileModalOpen}">
+    <div class="row mb-3">
+        <table class="table">
+            <thead>
+                <tr class="text-center table-secondary" style="font-family: 'Gilroy-Medium',sans-serif;">
+                    <th>S.No</th>
+                    <th>User Name</th>
+                    <th>Feedback</th>
+                    <th>Posted Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let feedback of paginatedPosts; let i = index">
+                    <td> {{(currentPage - 1) * itemsPerPage + i + 1}} </td>
+                    <td>{{feedback.User.Username}}</td>
+                    <td>{{feedback.FeedbackText}}</td>
+                    <td>{{feedback.Date | date}}</td>
+                    <td>
+                        <button type="submit" class="btn-custom" (click)="showProfile(feedback.User)" class="btn btn-primary">Show Profile</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>  
+        <div class="pagination">
+            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="pagination-btn">
+                <i class="fas fa-chevron-left"></i> Previous
+            </button>
+            <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="pagination-btn">
+                Next <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- User Profile Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show':isProfileModalOpen}"
+    aria-labelledby="profileModalLabel" aria-hidden="true" style="display: block;" *ngIf="isProfileModalOpen">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title">User Profile</h5>
+            </div>
+            <div class="modal-body text-center" style="font-family: 'Gilroy-Medium',sans-serif;">
+                <p><strong>Email: </strong>{{selectedUser?.Email}}</p>
+                <p><strong>Username: </strong>{{selectedUser?.Username}}</p>
+                <p><strong>Mobile Number: </strong>{{selectedUser?.MobileNumber}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closeProfileModal()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

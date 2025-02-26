@@ -1,0 +1,14 @@
+<nav *ngIf="!authService.isLoggedIn(); else loggedIn">
+    <div class="navbar">
+        <span class="navbar-brand">BlogPortal</span>
+        <div class="navbar-links">
+            <a routerLink="/registration">Register</a>
+            <a routerLink="/login">Login</a>
+        </div>
+    </div>
+</nav>
+
+<ng-template #loggedIn>
+    <app-admin-navbar *ngIf="authService.isAdmin()"></app-admin-navbar>
+    <app-user-navbar *ngIf="authService.isUser()"></app-user-navbar>
+</ng-template>

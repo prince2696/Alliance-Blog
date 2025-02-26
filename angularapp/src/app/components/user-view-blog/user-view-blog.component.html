@@ -1,0 +1,105 @@
+<head>
+  <title>Blog Post</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<div><h1 align="center"><b>Blog Posts</b></h1>
+  <button id="card-button" (click)="toggleViewMode()">
+    Switch to {{ viewMode === 'card' ? 'Table View' : 'Card View' }}
+  </button>
+</div>
+<div class="container mt-5" *ngIf="viewMode === 'table'" >
+<h1 align="center"><b>Blog Posts</b></h1>
+<input type="text" (input)="FindAllUserBlogs(userId)" [(ngModel)]="searchBlogs" placeholder="Search.." >
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>S.no</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let blogPost of paginatedBlogs;let i=index;">
+      <td>{{(currentPage-1)*itemsPerPage+i+1}}</td>
+      <td>{{ blogPost.Title }}</td>
+      <td>{{ blogPost.Content }}</td>
+      <td>{{ blogPost.Status }}</td>
+      <td>
+        <span *ngIf="blogPost.Status=='Rejected' || blogPost.Status=='Pending'">
+          <button class="edit-btn" (click)="openEditModal(blogPost.BlogPostId)">
+            <i class="fas fa-edit"></i>
+          </button>
+        </span>     
+        <button class="delete-btn" (click)="openDeleteModal(blogPost.BlogPostId)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="card-container" *ngIf="viewMode === 'card'">
+  <div *ngFor="let blogPost of paginatedBlogs; let i = index" class="card">
+    <div class="card-header">
+      <h2>{{blogPost.Title}}</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Content:</strong> {{blogPost.Content}}</p>
+      <p><strong>Author :</strong> {{blogPost.User?.Username}}</p>
+      <p><strong>Date pubished:</strong> {{blogPost.PublishedDate | date}}</p>
+    </div>
+    <div class="card-footer">
+      <button id="card-button-edit" style="background-color: green;" (click)="openEditModal(blogPost.BlogPostId)">Edit</button>
+      <button id="card-button-delete" (click)="openDeleteModal(blogPost.BlogPostId)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Confirmation Modal -->
+<div class="modal" [ngClass]="{'show': showEditModal}" id="editConfirmationModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirm Edit</h5>
+      <span class="close" (click)="closeEditModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to edit this blog post?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" (click)="confirmEdit()">Yes</button>
+      <button type="button" class="btn" (click)="closeEditModal()">No</button>
+    </div>
+  </div>
+
+</div>
+<div class="pagination">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="pagination-btn">
+    <i class="fas fa-chevron-left"></i> Previous
+  </button>
+  <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="pagination-btn">
+    Next <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal" [ngClass]="{'show': showDeleteModal}" id="deleteConfirmationModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirm Deletion</h5>
+      <span class="close" (click)="closeDeleteModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete this blog post?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" (click)="confirmDelete()">Yes</button>
+      <button type="button" class="btn" (click)="closeDeleteModal()">No</button>
+    </div>
+  </div>
+</div>

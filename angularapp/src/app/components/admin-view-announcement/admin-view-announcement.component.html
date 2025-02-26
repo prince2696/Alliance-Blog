@@ -1,0 +1,65 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<div class="container mt-5">
+  <h3 class="mb-4">Announcements</h3>
+  <input type="text" (input)="findAllAnnouncement()" [(ngModel)]="searchTitleAnnouncement" placeholder="Enter Title to Search...">
+
+  <table class="table table-bordered">
+      <thead class="thead-dark">
+          <tr>
+              <th>S.No</th>
+              <th>Title</th>
+              <th>Content</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Published Date</th>
+              <th>Status</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let announcement of paginatedAnnouncements; let i = index;">
+              <td>{{(currentPage - 1) * itemsPerPage + i + 1}}</td>
+              <td>{{announcement.Title}}</td>
+              <td>{{announcement.Content}}</td>
+              <td>{{announcement.Category}}</td>
+              <td>{{announcement.Priority}}</td>
+              <td>{{announcement.PublishedDate | date}}</td>
+              <td>{{announcement.Status}}</td>
+              <td>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="editAnnouncement(announcement.AnnouncementId)">
+                      <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="confirmSubmitDelete(announcement.AnnouncementId)">
+                      <i class="fas fa-trash"></i>
+                  </button>
+                  <button type="button" class="btn btn-success btn-sm" (click)="markAsComplement(i)">
+                      <i class="fas fa-toggle-on"></i>
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  <div class="pagination">
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="pagination-btn">
+          <i class="fas fa-chevron-left"></i> Previous
+      </button>
+      <span class="pagination-info">Page {{currentPage}} of {{totalPages}}</span>
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="pagination-btn">
+          Next <i class="fas fa-chevron-right"></i>
+      </button>
+  </div>
+</div>
+
+<div id="confirmationModalDelete" class="modal">
+  <div class="modal-content">
+      <span class="close" (click)="closeConfirmationModalDelete()">&times;</span>
+      <h2>Confirmation</h2>
+      <p>Are you sure you want to delete this announcement?</p>
+      <button type="button" class="btn btn-danger btn-sm" (click)="deleteAnnouncement()">Yes, Delete</button>
+      <button type="button" class="btn btn-secondary" (click)="closeConfirmationModalDelete()">No</button>
+  </div>
+</div>
+
+  

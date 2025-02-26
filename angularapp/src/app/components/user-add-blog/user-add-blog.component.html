@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="card" style="width: 50rem;">
+    <div class="card-body">
+      <h5 class="card-title"  *ngIf="isAddMode">Add New Blog Post</h5>
+      <h5 class="card-title"  *ngIf="!isAddMode">Edit Blog Post</h5>
+ 
+      <form #form="ngForm" (ngSubmit)="openModal()">
+        <div>
+          <label for="Title">Title <span class="required-asterisk" [ngStyle]="{'color': 'red'}">*</span></label>
+          <input type="text" id="Title" name="Title" [(ngModel)]="blogPost.Title"
+            (input)="onTitleChanged($event.target.value)" required style="width: 100%">
+          <div class="errorMessage" [ngStyle]="{'color': 'red'}" *ngIf="form.controls['Title']?.touched && form.controls['Title'].errors?.required">Title is required</div>
+            <div class="error-message" [ngStyle]="{'color': 'red'}" *ngIf="errorMessage">{{errorMessage}}</div>
+        </div>
+ 
+        <div>
+          <label for="Content">Content <span class="required-asterisk" [ngStyle]="{'color': 'red'}">*</span></label>
+          <textarea id="Content" name="Content" [(ngModel)]="blogPost.Content" required style="width: 100%"></textarea>
+          <div class="errorMessage" [ngStyle]="{'color': 'red'}" *ngIf="form.controls['Content']?.touched && form.controls['Content'].errors?.required"> Content is required </div>
+        </div>
+ 
+        <div *ngIf="blogPostExists" class="errorMessage">A Blog post with the same name already exists.</div>
+       
+        <button type="button"   [disabled]="blogPostExists && form.invalid" class="btn btn-success" style="width: 100%" *ngIf="isAddMode"  (click)="openModal()"> Submit </button>
+        <button type="button"  [disabled]="blogPostExists && form.invalid" class="btn btn-success" style="width: 100%" *ngIf="!isAddMode" (click)="openModal()"> Update </button>
+        <button type="button" (click)="close()" style="width: 100%">Cancel</button>  
+      </form>
+    </div>
+  </div>
+</div>
+ 
+<!-- Confirmation Modal -->
+<div class="modal" [ngClass]="{'show': showModal}" id="confirmationModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirm Submission</h5>
+      <span class="close" (click)="closeModal()">&times;</span>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to submit this blog post?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" (click)="confirmSubmission()">Yes</button>
+      <button type="button" class="btn" (click)="closeModal()">No</button>
+    </div>
+  </div>
+</div>

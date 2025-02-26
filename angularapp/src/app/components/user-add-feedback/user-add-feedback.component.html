@@ -1,0 +1,46 @@
+<h1 style="text-align:center">Add Feedback</h1>
+ 
+<div class="form-container">
+<form #form="ngForm" >
+  <div class="form-group">
+    <label for="feedbackText">Feedback<span style="color:red">*</span></label><br>
+    <textarea name="feedbackText" [(ngModel)]="newFeedback.FeedbackText" required cols="35" rows="10">
+    </textarea>
+    <div id="error" *ngIf="form.controls['feedbackText']?.touched && form.controls['feedbackText']?.invalid">
+      <div [ngStyle]="{'color': 'red'}" *ngIf="form.controls['feedbackText'].errors?.required">
+        *Feedback is required
+      </div>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px;">
+    <div class="error-message" *ngIf="errorMessage" style="color: red; text-align: left; width: 100%;">
+      * {{errorMessage}}
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="openModal()" [disabled]="form.invalid && isFormValid">Submit</button>
+  </div>
+  
+  
+  
+</form>
+</div>
+ 
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" style="display: block;" *ngIf="showModal" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Submission</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to submit this feedback?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="confirmSubmission()">Yes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
