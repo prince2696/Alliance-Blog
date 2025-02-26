@@ -151,4 +151,23 @@ Register
 
 ![Screenshot 2025-02-26 103256](https://github.com/user-attachments/assets/43be6461-4770-4557-9f35-20f17ff4a28c)
 
+User
+![user Home](https://github.com/user-attachments/assets/4687b45b-5a1e-48e7-82f9-e01b118f2191)
+
+
+
+![User Blogpost](https://github.com/user-attachments/assets/10cca56c-1873-40de-a406-06fa8739731f)
+
+![user announcemnt](https://github.com/user-attachments/assets/414ff592-614f-42c4-a59d-3c21b761956f)
+
+
+Admin
+
+![Screenshot 2025-02-26 103849](https://github.com/user-attachments/assets/472f08d2-2785-4ae3-92d0-e9ed29121467)
+
+![admin announcemnt](https://github.com/user-attachments/assets/197f9db9-66a0-43b9-8066-45580bda098c)
+
+
+![Admin blogpost](https://github.com/user-attachments/assets/e1394a38-ebf9-4fe0-aefc-2d1e09111703)
+
 
