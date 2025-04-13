@@ -65,7 +65,7 @@ Open a new terminal and log in to SQL Server
 
 sqlcmd -U sa
 
-Password: examlyMssql@123
+Password: examXXXXX
 
 Create and Use Database
 
